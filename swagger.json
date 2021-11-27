@@ -1,0 +1,245 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This API documentation consist of all Voter Management related APIs",
+    "version": "1.0.0",
+    "title": "Voter Management Catalog APIs",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Voter Manamgement",
+      "description": "Voter Management API Stack"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/create_voter": {
+      "post": {
+        "tags": [
+          "voter"
+        ],
+        "summary": "Create a new Voter",
+        "description": "Create a new Voter",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Create voter parameter",
+            "in": "body",
+            "description": "This route will allow to register the voter.",
+            "required": true,
+            "schema": {
+              "properties": {
+                "admin_id": {
+                  "type": "string",
+                  "example": "121"
+                },
+                "voter_id": {
+                  "type": "string",
+                  "example": "123457689"
+                },
+                "ward_number": {
+                  "type": "string",
+                  "example": "22"
+                },
+                "phone_number": {
+                  "type": "string",
+                  "example": "####7888"
+                },
+                "full_name": {
+                  "type": "string",
+                  "example": "John mackey drane"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "Flat No.122, Ring Road, London"
+                },
+                "area": {
+                  "type": "string",
+                  "example": "Ring road, near santacruise"
+                },
+                "visited": {
+                  "type": "boolean",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "Invalid token provided!"
+          },
+          "403": {
+            "description": "No token provided!"
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    },
+    "/get_voters": {
+      "get": {
+        "tags": [
+          "Voter List"
+        ],
+        "summary": "Get the Voter List",
+        "description": "Get the voter list using limit",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "start",
+            "description": "Starting location of voter to fetch, default value 0",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Number of voters to be fetch, default value 100",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "voter_id",
+            "description": "Voter Id of the Voter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "ward_number",
+            "description": "Ward Number of the Voter",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    },
+    "/update_voter_details": {
+      "patch": {
+        "tags": [
+          "voter update"
+        ],
+        "summary": "Update the voter data",
+        "description": "Update the voter data",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Update the voter parameter",
+            "in": "body",
+            "description": "This route will allow to update the voter.",
+            "required": true,
+            "schema": {
+              "properties": {
+                "admin_id": {
+                  "type": "string",
+                  "example": "121"
+                },
+                "voter_id": {
+                  "type": "string",
+                  "example": "123457689"
+                },
+                "ward_number": {
+                  "type": "string",
+                  "example": "22"
+                },
+                "phone_number": {
+                  "type": "string",
+                  "example": "####7888"
+                },
+                "full_name": {
+                  "type": "string",
+                  "example": "John mackey drane"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "Flat No.122, Ring Road, London"
+                },
+                "area": {
+                  "type": "string",
+                  "example": "Ring road, near santacruise"
+                },
+                "visited": {
+                  "type": "boolean",
+                  "example": 1
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "Invalid token provided!"
+          },
+          "403": {
+            "description": "No token provided!"
+          }
+        },
+        "security": [
+          {
+            "access_token": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "access_token": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
